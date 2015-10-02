@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/melzhao/dev/vagrant_machines/chef_debian-7.6/hhof_woh_cms/app/assets/stylesheets'
+let g:netrw_dirhist_2='/Users/melzhao/dev/vagrant_machines/chef_debian-7.6/hhof_woh_cms/app/assets/javascripts'
+let g:netrw_dirhist_3='/Users/melzhao/dev/vagrant_machines/chef_debian-7.6/hhof_woh_cms/app/views/users'
+let g:netrw_dirhist_4='/Users/melzhao/dev/vagrant_machines/chef_debian-7.6/hhof_woh_cms/app/views'
+let g:netrw_dirhist_5='/Users/melzhao/dev/vagrant_machines/chef_debian-7.6/hhof_woh_cms/app/views/visitors'
+let g:netrw_dirhist_6='/Users/melzhao/dev/vagrant_machines/chef_debian-7.6/hhof_woh_cms/app/views/avatar_categories'
+let g:netrw_dirhist_7='/Users/melzhao/dev/vagrant_machines/chef_debian-7.6/hhof_woh_cms/app/views/instructions'
+let g:netrw_dirhist_8='/Users/melzhao/dev/vagrant_machines/chef_debian-7.6/hhof_woh_cms/app/views/position_media'
+let g:netrw_dirhist_9='/Users/melzhao/Downloads'
