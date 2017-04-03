@@ -71,13 +71,21 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-:set background=dark
+set autoindent		" always set autoindenting on
 
 set t_Co=256
-colorscheme sunburst
+endif " has("autocmd")
+if has('gui_running')
+  set background=dark
+  let g:solarized_termcolors=256
+  colorscheme solarized
+  set guifont=Menlo:h15
+  set transparency=5
+else
+  set background=dark
+  colorscheme sunburst
+endif
+
 
 set splitbelow
 set splitright
