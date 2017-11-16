@@ -1,3 +1,3 @@
-# vim-customization
-=======
-how I customize my vim 
+# Copy pasta .vimrc to your ~/
+
+Also using vim-airline, fugitive, NERDTree, syntastic
