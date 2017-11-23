@@ -1,0 +1,18 @@
+[submodule "/home/mzhao/dev/vim-customization/vim/bundle/nerdtree"]
+	path = /home/mzhao/dev/vim-customization/vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "/home/mzhao/dev/vim-customization/vim/bundle/syntastic"]
+	path = /home/mzhao/dev/vim-customization/vim/bundle/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
+[submodule "/home/mzhao/dev/vim-customization/vim/bundle/vim-airline"]
+	path = /home/mzhao/dev/vim-customization/vim/bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "/home/mzhao/dev/vim-customization/vim/bundle/vim-fontsize"]
+	path = /home/mzhao/dev/vim-customization/vim/bundle/vim-fontsize
+	url = https://github.com/drmikehenry/vim-fontsize.git
+[submodule "/home/mzhao/dev/vim-customization/vim/bundle/vim-fugitive"]
+	path = /home/mzhao/dev/vim-customization/vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "/home/mzhao/dev/vim-customization/vim/bundle/vim-rails"]
+	path = /home/mzhao/dev/vim-customization/vim/bundle/vim-rails
+	url = https://github.com/tpope/vim-rails.git
