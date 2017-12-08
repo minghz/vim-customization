@@ -36,9 +36,12 @@ syntax enable
 set background=dark
 colorscheme solarized
 
+" use solarized airline theme
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+
 " copy and paste in visual mode using standard ctrl-c ctrl-v keys
 vmap <C-c> "+yi
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
-
