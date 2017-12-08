@@ -30,3 +30,15 @@ set number
 
 " allow mouse use
 set mouse=a
+
+" use solarized colorscheme
+syntax enable
+set background=dark
+colorscheme solarized
+
+" copy and paste in visual mode using standard ctrl-c ctrl-v keys
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <C-r><C-o>+
+
