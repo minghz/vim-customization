@@ -28,6 +28,9 @@ set splitright
 " show line numbers
 set number
 
+" background color warning for long lines
+set colorcolumn=80
+
 " allow mouse use
 set mouse=a
 
