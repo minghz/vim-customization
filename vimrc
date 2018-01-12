@@ -34,6 +34,9 @@ set colorcolumn=80
 " allow mouse use
 set mouse=a
 
+" no wrappiing of lines
+set nowrap
+
 " use solarized colorscheme
 syntax enable
 set background=dark
