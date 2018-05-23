@@ -37,6 +37,9 @@ set mouse=a
 " no wrappiing of lines
 set nowrap
 
+" font size
+set guifont=Menlo\ Regular:h13
+
 " use solarized colorscheme
 syntax enable
 set background=dark
