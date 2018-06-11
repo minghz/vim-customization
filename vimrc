@@ -49,6 +49,9 @@ colorscheme solarized
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 
+" set text highlight on searched text
+set hlsearch
+
 " copy and paste in visual mode using standard ctrl-c ctrl-v keys
 vmap <C-c> "+yi
 vmap <C-x> "+c
