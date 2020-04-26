@@ -67,58 +67,57 @@ set guifont=Hack\ Regular:h12
 " lightline vim plugin
 set laststatus=2
 set noshowmode
-function LoadLightlineConfig()
-  let g:lightline = {
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'readonly', 'relativepath', 'modified' ] ]
-        \ },
-        \ 'inactive': {
-        \   'left': [ [ 'relativepath' ] ]
-        \}
-        \}
-endfunction
+let g:customLightlineConfig = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'relativepath', 'modified' ] ]
+      \ },
+      \ 'inactive': {
+      \   'left': [ [ 'relativepath' ] ]
+      \}
+      \}
 
 "change colorscheme
-nnoremap <leader>w :call SetColorTwoFirewatch()<CR>
+nnoremap <leader>1 :call SetColorTwoFirewatch()<CR>
 function SetColorTwoFirewatch()
-  let g:lightline = {
-        \ 'colorscheme': 'jellybeans',
-        \ }
-  call LoadLightlineConfig()
-  call lightline#enable()
   colorscheme two-firewatch
+  set background=dark
+  let g:customLightlineConfig.colorscheme = 'one'
+  let g:lightline = g:customLightlineConfig
+  call lightline#enable()
 endfunction
 
-nnoremap <leader>e :call SetColorDogrun()<CR>
+nnoremap <leader>2 :call SetColorTwoFirewatchLight()<CR>
+function SetColorTwoFirewatchLight()
+  colorscheme two-firewatch
+  set background=light
+  let g:customLightlineConfig.colorscheme = 'solarized'
+  let g:lightline = g:customLightlineConfig
+  call lightline#enable()
+endfunction
+
+nnoremap <leader>3 :call SetColorDogrun()<CR>
 function SetColorDogrun()
-  let g:lightline = {
-        \ 'colorscheme': 'dogrun',
-        \ }
-  call LoadLightlineConfig()
-  call lightline#enable()
   colorscheme dogrun
-endfunction
-
-nnoremap <leader>r :call SetColorAfterglow()<CR>
-function SetColorAfterglow()
-  let g:lightline = {
-        \ 'colorscheme': 'powerlineish',
-        \ }
-  call LoadLightlineConfig()
+  set background=dark
+  let g:customLightlineConfig.colorscheme = 'dogrun'
+  let g:lightline = g:customLightlineConfig
   call lightline#enable()
-  colorscheme afterglow
 endfunction
 
-" use solarized colorscheme
+nnoremap <leader>4 :call SetColorAfterglow()<CR>
+function SetColorAfterglow()
+  colorscheme afterglow
+  set background=dark
+  let g:customLightlineConfig.colorscheme = 'powerlineish'
+  let g:lightline = g:customLightlineConfig
+  call lightline#enable()
+endfunction
+
+" default colorschemes
 syntax enable
 set termguicolors " use truecolors
 call SetColorTwoFirewatch()
-set background=dark
-
-"change background lighting
-nnoremap <leader>f :set background=dark<CR>
-nnoremap <leader>g :set background=light<CR>
 
 " set text highlight on searched text
 set hlsearch
