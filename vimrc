@@ -67,52 +67,52 @@ set guifont=Hack\ Regular:h12
 " lightline vim plugin
 set laststatus=2
 set noshowmode
-
-"change colorscheme
-nnoremap <leader>w :call SetColorTwoFirewatch()<CR>
-function SetColorTwoFirewatch()
-  set termguicolors
+function LoadLightlineConfig()
   let g:lightline = {
-        \ 'colorscheme': 'jellybeans',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
         \             [ 'readonly', 'relativepath', 'modified' ] ]
         \ },
+        \ 'inactive': {
+        \   'left': [ [ 'relativepath' ] ]
+        \}
+        \}
+endfunction
+
+"change colorscheme
+nnoremap <leader>w :call SetColorTwoFirewatch()<CR>
+function SetColorTwoFirewatch()
+  let g:lightline = {
+        \ 'colorscheme': 'jellybeans',
         \ }
+  call LoadLightlineConfig()
   call lightline#enable()
   colorscheme two-firewatch
 endfunction
 
 nnoremap <leader>e :call SetColorDogrun()<CR>
 function SetColorDogrun()
-  set termguicolors
   let g:lightline = {
         \ 'colorscheme': 'dogrun',
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'readonly', 'relativepath', 'modified' ] ]
-        \ },
         \ }
+  call LoadLightlineConfig()
   call lightline#enable()
   colorscheme dogrun
 endfunction
 
 nnoremap <leader>r :call SetColorAfterglow()<CR>
 function SetColorAfterglow()
-  set termguicolors
   let g:lightline = {
         \ 'colorscheme': 'powerlineish',
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'readonly', 'relativepath', 'modified' ] ]
-        \ },
         \ }
+  call LoadLightlineConfig()
   call lightline#enable()
   colorscheme afterglow
 endfunction
 
 " use solarized colorscheme
 syntax enable
+set termguicolors " use truecolors
 call SetColorTwoFirewatch()
 set background=dark
 
