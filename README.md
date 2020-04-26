@@ -18,7 +18,6 @@ To save your current settings, run
   ▸ rust.vim/
   ▸ typescript-vim/
   ▸ vim-afterglow/
-  ▸ vim-colors-solarized/
   ▸ vim-dogrun/
   ▸ vim-elixir/
   ▸ vim-fugitive/
