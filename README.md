@@ -1,3 +1,32 @@
-# Copy pasta .vimrc to your ~/
+# Ming's vimrc setup
 
-Also using vim-airline, fugitive, NERDTree, syntastic
+## Usage
+
+To install, (and over-write your current .vimrc), run:
+`./backup.sh`
+
+To save your current settings, run
+`./load.sh`
+
+## Currenly used plug-ins (April 6, 2020)
+```
+  ▸ coc.nvim/
+  ▸ lightline.vim/
+  ▸ neomake/
+  ▸ nerdtree/
+  ▸ nvim-colorizer.lua/
+  ▸ rust.vim/
+  ▸ typescript-vim/
+  ▸ vim-afterglow/
+  ▸ vim-colors-solarized/
+  ▸ vim-dogrun/
+  ▸ vim-elixir/
+  ▸ vim-fugitive/
+  ▸ vim-javascript/
+  ▸ vim-jsx-pretty/
+  ▸ vim-phoenix/
+  ▸ vim-rails/
+  ▸ vim-ripgrep/
+  ▸ vim-ruby/
+  ▸ vim-two-firewatch/
+```
