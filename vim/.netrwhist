@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/mzhao/dev/meng_proj'
-let g:netrw_dirhist_2='/home/mzhao/dev/meng_proj/tensorflow'
-let g:netrw_dirhist_3='/home/mzhao/dev/meng_proj/tensorflow/src'
-let g:netrw_dirhist_4='/home/mzhao/dev/meng_proj/tensorflow/src/fork_cifar10'
