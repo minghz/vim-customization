@@ -4,16 +4,30 @@ filetype plugin indent on
 
 " NERDTree open shortcut
 map <C-p> :NERDTreeToggle<CR>
+map <C-f> :NERDTreeFind<CR>
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
-" Syntastic recommended settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_ignore_files = ['scss$']
+
+" Neomake configuration - lynt and syntax checker
+function! MyOnBattery()
+  if has('macunix')
+    return match(system('pmset -g batt'), "Now drawing from 'Battery Power'") != -1
+  elseif has('unix')
+    return readfile('/sys/class/power_supply/AC/online') == ['0']
+  endif
+  return 0
+endfunction
+
+if MyOnBattery()
+  call neomake#configure#automake('w')
+else
+  call neomake#configure#automake('nw', 1000)
+endif
+
+" Fuzzy file search in command line
+" fzf Installed with Homebrew
+set rtp+=/usr/local/opt/fzf
 
 " convert tabs to spaces and tabspaces to 2
 set smartindent
@@ -25,8 +39,17 @@ set expandtab
 set splitbelow
 set splitright
 
+" set larger preview window
+set previewheight=30
+
 " show line numbers
 set number
+
+" put tmp files elsewhere
+set backupdir=~/.vim/backup//
+set backupcopy=yes " make a copy of the file and overwrite the original one
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
 
 " background color warning for long lines
 set colorcolumn=80
@@ -38,22 +61,124 @@ set mouse=a
 set nowrap
 
 " font size
-set guifont=Menlo\ Regular:h13
+"set guifont=Menlo\ Regular:h12
+set guifont=Hack\ Regular:h12
+
+" lightline vim plugin
+set laststatus=2
+set noshowmode
+
+"change colorscheme
+nnoremap <leader>w :call SetColorTwoFirewatch()<CR>
+function SetColorTwoFirewatch()
+  set termguicolors
+  let g:lightline = {
+        \ 'colorscheme': 'jellybeans',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'readonly', 'relativepath', 'modified' ] ]
+        \ },
+        \ }
+  call lightline#enable()
+  colorscheme two-firewatch
+endfunction
+
+nnoremap <leader>e :call SetColorDogrun()<CR>
+function SetColorDogrun()
+  set termguicolors
+  let g:lightline = {
+        \ 'colorscheme': 'dogrun',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'readonly', 'relativepath', 'modified' ] ]
+        \ },
+        \ }
+  call lightline#enable()
+  colorscheme dogrun
+endfunction
+
+nnoremap <leader>r :call SetColorAfterglow()<CR>
+function SetColorAfterglow()
+  set termguicolors
+  let g:lightline = {
+        \ 'colorscheme': 'powerlineish',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'readonly', 'relativepath', 'modified' ] ]
+        \ },
+        \ }
+  call lightline#enable()
+  colorscheme afterglow
+endfunction
 
 " use solarized colorscheme
 syntax enable
+call SetColorTwoFirewatch()
 set background=dark
-colorscheme solarized
 
-" use solarized airline theme
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+"change background lighting
+nnoremap <leader>f :set background=dark<CR>
+nnoremap <leader>g :set background=light<CR>
 
 " set text highlight on searched text
 set hlsearch
 
+" copy current file path
+nmap cp :let @" = expand("%")<cr>:let @+ = expand("%")<cr>
+
 " copy and paste in visual mode using standard ctrl-c ctrl-v keys
-vmap <C-c> "+yi
+vmap <C-c> "+y
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
+
+" remove search highlight
+nmap <leader>c :noh<CR>
+
+" For better git commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" fugitive git bindings
+nnoremap <leader>ga :Git add %:p<CR><CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>gt :Gcommit -v -q %:p<CR>
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gw :Gwrite<CR><CR>
+nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <leader>gp :Ggrep<Space>
+nnoremap <leader>gm :Gmove<Space>
+nnoremap <leader>go :Git checkout<Space>
+nnoremap <leader>gps :Dispatch! git push<CR>
+nnoremap <leader>gpl :Dispatch! git pull<CR>
+
+" Enable neovim colorizer
+" It highlights color codes with the respective color equivalent
+" See - https://github.com/norcalli/nvim-colorizer.lua
+lua require'colorizer'.setup()
+
+" Escape/unescape & < > HTML entities in range (default current line).
+function! HtmlEntities(line1, line2, action)
+  let search = @/
+  let range = 'silent ' . a:line1 . ',' . a:line2
+  if a:action == 0  " must convert &amp; last
+    execute range . 'sno/&lt;/</eg'
+    execute range . 'sno/&gt;/>/eg'
+    execute range . 'sno/&amp;/&/eg'
+  else              " must convert & first
+    execute range . 'sno/&/&amp;/eg'
+    execute range . 'sno/</&lt;/eg'
+    execute range . 'sno/>/&gt;/eg'
+  endif
+  nohl
+  let @/ = search
+endfunction
+command! -range -nargs=1 Entities call HtmlEntities(<line1>, <line2>, <args>)
+noremap <silent> <Leader>h :Entities 0<CR>
+noremap <silent> <Leader>H :Entities 1<CR>
+
+" coc autofill configs
+source ~/.vim_coc_config
