@@ -8,7 +8,6 @@ map <C-f> :NERDTreeFind<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-
 " Neomake configuration - lynt and syntax checker
 function! MyOnBattery()
   if has('macunix')
@@ -19,15 +18,11 @@ function! MyOnBattery()
   return 0
 endfunction
 
-if MyOnBattery()
-  call neomake#configure#automake('w')
-else
-  call neomake#configure#automake('nw', 1000)
-endif
-
-" Fuzzy file search in command line
-" fzf Installed with Homebrew
-set rtp+=/usr/local/opt/fzf
+" if MyOnBattery()
+"   #
+" else
+"   #
+" endif
 
 " convert tabs to spaces and tabspaces to 2
 set smartindent
@@ -35,15 +30,15 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" show line numbers
+set number
+
 " intuitive window splitting
 set splitbelow
 set splitright
 
 " set larger preview window
 set previewheight=30
-
-" show line numbers
-set number
 
 " put tmp files elsewhere
 set backupdir=~/.vim/backup//
@@ -117,13 +112,18 @@ endfunction
 " default colorschemes
 syntax enable
 set termguicolors " use truecolors
-call SetColorTwoFirewatch()
+call SetColorTwoFirewatchLight()
+
+" for python-syntax plugin highlighting
+let g:python_highlight_all = 1
 
 " set text highlight on searched text
 set hlsearch
 
 " copy current file path
 nmap cp :let @" = expand("%")<cr>:let @+ = expand("%")<cr>
+
+" TODO: Command to copy file path in github
 
 " copy and paste in visual mode using standard ctrl-c ctrl-v keys
 vmap <C-c> "+y
@@ -179,5 +179,3 @@ command! -range -nargs=1 Entities call HtmlEntities(<line1>, <line2>, <args>)
 noremap <silent> <Leader>h :Entities 0<CR>
 noremap <silent> <Leader>H :Entities 1<CR>
 
-" coc autofill configs
-source ~/.vim_coc_config
