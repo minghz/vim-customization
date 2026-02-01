@@ -1,4 +1,22 @@
-execute pathogen#infect()
+" Loading vim-plug plugins https://github.com/junegunn/vim-plug?tab=readme-ov-file#usage
+call plug#begin()
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
+
+Plug 'itchyny/lightline.vim'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'wadackel/vim-dogrun'
+Plug 'rakr/vim-two-firewatch'
+
+Plug 'elixir-editors/vim-elixir'
+
+call plug#end()
+
+" basic quality-of-life configs
 syntax on
 filetype plugin indent on
 
@@ -8,21 +26,9 @@ map <C-f> :NERDTreeFind<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-" Neomake configuration - lynt and syntax checker
-function! MyOnBattery()
-  if has('macunix')
-    return match(system('pmset -g batt'), "Now drawing from 'Battery Power'") != -1
-  elseif has('unix')
-    return readfile('/sys/class/power_supply/AC/online') == ['0']
-  endif
-  return 0
-endfunction
-
-" if MyOnBattery()
-"   #
-" else
-"   #
-" endif
+" Fuzzy file search in command line
+" fzf Installed with Homebrew
+set rtp+=/usr/local/opt/fzf
 
 " convert tabs to spaces and tabspaces to 2
 set smartindent
@@ -30,15 +36,15 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
-" show line numbers
-set number
-
 " intuitive window splitting
 set splitbelow
 set splitright
 
 " set larger preview window
 set previewheight=30
+
+" show line numbers
+set number
 
 " put tmp files elsewhere
 set backupdir=~/.vim/backup//
@@ -112,18 +118,13 @@ endfunction
 " default colorschemes
 syntax enable
 set termguicolors " use truecolors
-call SetColorTwoFirewatchLight()
-
-" for python-syntax plugin highlighting
-let g:python_highlight_all = 1
+call SetColorTwoFirewatch()
 
 " set text highlight on searched text
 set hlsearch
 
 " copy current file path
 nmap cp :let @" = expand("%")<cr>:let @+ = expand("%")<cr>
-
-" TODO: Command to copy file path in github
 
 " copy and paste in visual mode using standard ctrl-c ctrl-v keys
 vmap <C-c> "+y
@@ -153,11 +154,6 @@ nnoremap <leader>gm :Gmove<Space>
 nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
-
-" Enable neovim colorizer
-" It highlights color codes with the respective color equivalent
-" See - https://github.com/norcalli/nvim-colorizer.lua
-lua require'colorizer'.setup()
 
 " Escape/unescape & < > HTML entities in range (default current line).
 function! HtmlEntities(line1, line2, action)

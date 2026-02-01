@@ -1,31 +1,12 @@
-# Ming's vimrc setup
+# Ming's vim setup
 
 ## Usage
 
-To install, (and over-write your current .vimrc), run:
-`./backup.sh`
+Using the [vim-plug](https://github.com/junegunn/vim-plug?tab=readme-ov-file#usage) package manager.
 
-To save your current settings, run
-`./load.sh`
+To install, (and over-write your ~/.vimrc), run:
+`./apply_these_configs.sh`
 
-## Currenly used plug-ins (April 6, 2020)
-```
-  ▸ coc.nvim/
-  ▸ lightline.vim/
-  ▸ neomake/
-  ▸ nerdtree/
-  ▸ nvim-colorizer.lua/
-  ▸ rust.vim/
-  ▸ typescript-vim/
-  ▸ vim-afterglow/
-  ▸ vim-dogrun/
-  ▸ vim-elixir/
-  ▸ vim-fugitive/
-  ▸ vim-javascript/
-  ▸ vim-jsx-pretty/
-  ▸ vim-phoenix/
-  ▸ vim-rails/
-  ▸ vim-ripgrep/
-  ▸ vim-ruby/
-  ▸ vim-two-firewatch/
-```
+To save your ~/. settings to this git-tracked repo, run:
+`./save_configs_to_here.sh`
+
